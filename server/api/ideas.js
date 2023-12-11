@@ -8,6 +8,7 @@ ideasRouter.param("ideaId", (req, res, next, id) => {
     const idea = db.getFromDatabaseById(modelType, id);
     if (idea) {
         req.idea = idea;
+        req.body.id = id;
         req.ideaId = id;
         next();
     }
