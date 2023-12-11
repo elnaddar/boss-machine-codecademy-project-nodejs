@@ -17,3 +17,16 @@ workRouter.post("/", (req, res, next) => {
         res.sendStatus(400);
     }
 });
+
+workRouter.param("workId", (req, res, next, id) => {
+    const work = db.getFromDatabaseById(modelType, id);
+    if(work.minionId != req.minionId){
+        res.sendStatus(400);
+    } else if (work) {
+        req.work = work;
+        req.body.id = id;
+        req.workId = id;
+        next();
+    }
+    res.sendStatus(404);
+});
