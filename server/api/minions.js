@@ -32,7 +32,7 @@ minionsRouter.get("/:minionId", (req, res, next) => {
 });
 
 minionsRouter.put("/:minionId", (req, res, next) => {
-    const instance = db.updateInstanceInDatabase(modelType, req.minion);
+    const instance = db.updateInstanceInDatabase(modelType, req.body);
     if (instance) {
         res.send(instance);
     } else {
