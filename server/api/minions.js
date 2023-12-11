@@ -4,10 +4,10 @@ const db = require("../db");
 const modelType = "minions";
 module.exports = minionsRouter;
 
-minionsRouter.param("minionId", (req, res, next, id)=>{
+minionsRouter.param("minionId", (req, res, next, id) => {
     id = Number(id);
     const minion = db.getFromDatabaseById(modelType, id);
-    if(minion){
+    if (minion) {
         req.minion = minion;
         req.minionId = id;
         next();
@@ -15,28 +15,28 @@ minionsRouter.param("minionId", (req, res, next, id)=>{
     res.sendStatus(404);
 });
 
-minionsRouter.get("/", (req, res, next)=>{
+minionsRouter.get("/", (req, res, next) => {
     res.send(db.getAllFromDatabase(modelType));
 });
 
-minionsRouter.post("/", (req, res, next)=>{
+minionsRouter.post("/", (req, res, next) => {
     const instance = db.addToDatabase(modelType, req.body);
-    if(instance){
+    if (instance) {
         res.status(201).send(instance);
-    } else{
+    } else {
         res.sendStatus(404);
     }
 });
 
-minionsRouter.get("/:minionId", (req, res, next)=>{
+minionsRouter.get("/:minionId", (req, res, next) => {
     res.send(req.minion);
 });
 
-minionsRouter.put("/:minionId", (req, res, next)=>{
+minionsRouter.put("/:minionId", (req, res, next) => {
     const instance = db.updateInstanceInDatabase(modelType, req.minion);
-    if(instance){
+    if (instance) {
         res.send(instance);
-    }else{
+    } else {
         res.sendStatus(400);
     }
 });
