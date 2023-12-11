@@ -2,7 +2,10 @@ const express = require('express');
 const minionsRouter = express.Router();
 const db = require("../db");
 const modelType = "minions";
+const work = require('./work');
 module.exports = minionsRouter;
+
+minionsRouter.use("/:minionId/work", work);
 
 minionsRouter.param("minionId", (req, res, next, id) => {
     const minion = db.getFromDatabaseById(modelType, id);
