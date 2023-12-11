@@ -9,8 +9,8 @@ meetingsRouter.get("/", (req, res, next) => {
 });
 
 meetingsRouter.post("/", (req, res, next) => {
-    console.log("POST: " +JSON.stringify(req.body));
-    const instance = db.addToDatabase(modelType, req.body);
+    const meeting = db.createMeeting()
+    const instance = db.addToDatabase(modelType, meeting);
     if (instance) {
         res.status(201).send(instance);
     } else {
