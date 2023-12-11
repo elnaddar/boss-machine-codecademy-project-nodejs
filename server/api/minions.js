@@ -13,3 +13,7 @@ minionsRouter.param("minionId", (req, res, next, id)=>{
     }
     res.sendStatus(404);
 });
+
+minionsRouter.get("/", (req, res, next)=>{
+    res.send(db.getAllFromDatabase(modelType));
+});
