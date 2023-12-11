@@ -24,7 +24,7 @@ minionsRouter.post("/", (req, res, next) => {
     if (instance) {
         res.status(201).send(instance);
     } else {
-        res.sendStatus(404);
+        res.sendStatus(400);
     }
 });
 
