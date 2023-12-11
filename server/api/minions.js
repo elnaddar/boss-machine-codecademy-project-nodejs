@@ -31,3 +31,12 @@ minionsRouter.post("/", (req, res, next)=>{
 minionsRouter.get("/:minionId", (req, res, next)=>{
     res.send(req.minion);
 });
+
+minionsRouter.put("/:minionId", (req, res, next)=>{
+    const instance = db.updateInstanceInDatabase(modelType, req.minion);
+    if(instance){
+        res.send(instance);
+    }else{
+        res.sendStatus(400);
+    }
+});
