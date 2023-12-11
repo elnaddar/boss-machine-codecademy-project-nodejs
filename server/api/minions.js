@@ -9,6 +9,7 @@ minionsRouter.param("minionId", (req, res, next, id)=>{
     const minion = db.getFromDatabaseById(modelType, id);
     if(minion){
         req.minion = minion;
+        req.minionId = id;
         next();
     }
     res.sendStatus(404);
