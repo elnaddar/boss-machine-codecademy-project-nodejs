@@ -2,6 +2,7 @@ const express = require('express');
 const ideasRouter = express.Router();
 const db = require("../db");
 const modelType = "ideas";
+const checkMillionDollarIdea = require('../checkMillionDollarIdea');
 module.exports = ideasRouter;
 
 ideasRouter.param("ideaId", (req, res, next, id) => {
@@ -19,7 +20,7 @@ ideasRouter.get("/", (req, res, next) => {
     res.send(db.getAllFromDatabase(modelType));
 });
 
-ideasRouter.post("/", (req, res, next) => {
+ideasRouter.post("/", checkMillionDollarIdea, (req, res, next) => {
     const instance = db.addToDatabase(modelType, req.body);
     if (instance) {
         res.status(201).send(instance);
