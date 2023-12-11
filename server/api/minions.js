@@ -26,3 +26,7 @@ minionsRouter.post("/", (req, res, next)=>{
         res.sendStatus(404);
     }
 });
+
+minionsRouter.get("/:minionId", (req, res, next)=>{
+    res.send(req.minion);
+});
