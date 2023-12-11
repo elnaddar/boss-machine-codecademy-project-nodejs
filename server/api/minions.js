@@ -40,3 +40,12 @@ minionsRouter.put("/:minionId", (req, res, next) => {
         res.sendStatus(400);
     }
 });
+
+minionsRouter.delete("/:minionId", (req, res, next) => {
+    const isDeleted = db.deleteFromDatabasebyId(modelType, req.minionId);
+    if (isDeleted) {
+        res.sendStatus(204);
+    } else {
+        res.sendStatus(400);
+    }
+})
