@@ -5,7 +5,7 @@ const modelType = "work";
 module.exports = workRouter;
 
 workRouter.get("/", (req, res, next) => {
-    const work = db.getAllFromDatabase(modelType).filter((work)=>{work.minionId == req.minionId});
+    const work = db.getAllFromDatabase(modelType).filter((work)=>work.minionId == req.minionId);
     res.send(work);
 });
 
