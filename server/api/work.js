@@ -39,3 +39,12 @@ workRouter.put("/:workId", (req, res, next) => {
         res.sendStatus(400);
     }
 });
+
+workRouter.delete("/:workId", (req, res, next) => {
+    const isDeleted = db.deleteFromDatabasebyId(modelType, req.workId);
+    if (isDeleted) {
+        res.sendStatus(204);
+    } else {
+        res.sendStatus(400);
+    }
+})
