@@ -30,3 +30,12 @@ workRouter.param("workId", (req, res, next, id) => {
     }
     res.sendStatus(404);
 });
+
+workRouter.put("/:workId", (req, res, next) => {
+    const instance = db.updateInstanceInDatabase(modelType, req.body);
+    if (instance) {
+        res.send(instance);
+    } else {
+        res.sendStatus(400);
+    }
+});
